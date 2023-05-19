@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.admin.goodsDao">
+    <resultMap id="goodsMap" type="vueshop.model.user.Product_Picture">
+        <id property="id" column="id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="product_picture" column="product_picture"/>
+    </resultMap>
+    <insert id="addPicture">
+        insert into
+            product_picture
+            (product_picture,product_id)
+        values
+            (#{s},#{productId})
+    </insert>
+    <update id="edit">
+        update
+            product_picture
+        set
+            product_picture = #{imageUrl}
+        where
+            product_id = #{id}
+    </update>
+    <update id="editName">
+        update
+            product
+        set
+            product_name = #{name}
+        where
+            product_id = #{id}
+    </update>
+    <delete id="delete">
+        delete from
+            product_picture
+        where
+            product_id = #{id}
+    </delete>
+    <delete id="deleteProduct">
+        delete from
+            product
+        where
+            product_id = #{id}
+    </delete>
+    <delete id="deletePhoto">
+        delete from
+            product_picture
+        where
+            product_picture = #{url}
+    </delete>
+    <select id="selectId" resultType="string">
+        select
+            distinct product_id
+        from
+            product
+    </select>
+    <select id="selectPicture" resultType="string">
+        SELECT
+            product_picture.product_picture
+        FROM
+            product_picture
+                JOIN product ON product.product_id = product_picture.product_id
+        WHERE
+            product_picture.product_id = #{productId}
+    </select>
+    <select id="selectName" resultType="string">
+        SELECT
+            product.product_name
+        FROM
+            product
+        WHERE
+            product.product_id = #{productId}
+    </select>
+    <select id="findId" resultType="java.lang.Integer">
+        SELECT
+            product.product_id
+        FROM
+            product
+        WHERE
+            product.product_name = #{name}
+    </select>
+</mapper>

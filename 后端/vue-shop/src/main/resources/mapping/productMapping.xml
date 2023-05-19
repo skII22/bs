@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.user.productDao">
+    <resultMap id="productMap" type="vueshop.model.user.Product">
+        <id  property="product_id" column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="product_title" column="product_title"/>
+        <result property="category_id" column="category_id"/>
+        <result property="product_intro" column="product_intro"/>
+        <result property="product_picture" column="product_picture"/>
+        <result property="product_price" column="product_price"/>
+        <result property="product_selling_price" column="product_selling_price"/>
+        <result property="product_num" column="product_num"/>
+        <result property="product_sales" column="product_sales"/>
+    </resultMap>
+    <resultMap id="category" type="vueshop.model.user.Category">
+        <id property="category_id" column="category_id"/>
+        <result property="category_name" column="category_name"/>
+    </resultMap>
+    <select id="getproduct" resultMap="productMap">
+        select
+            product_id,
+            product_name,
+            product_title,
+            product.category_id,
+            product_intro,
+            product_picture,
+            product_price,
+            product_selling_price,
+            product_num,
+            product_sales
+        from
+            product
+        join
+            category
+        on
+            product.category_id=category.category_id
+        where
+            category.category_name = #{category_name}
+
+        limit 0,7
+    </select>
+    <select id="getHotProduct" resultMap="productMap">
+        select
+            product_id,
+            product_name,
+            product_title,
+            product.category_id,
+            product_intro,
+            product_picture,
+            product_price,
+            product_selling_price,
+            product_num,
+            product_sales
+        from
+            product
+                join
+            category
+            on
+                product.category_id=category.category_id
+        where
+            category.category_name in
+            <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+
+            limit 0,7
+    </select>
+    <select id="getCategory" resultMap="category">
+        select
+            *
+        from
+            category
+    </select>
+    <select id="getAllProduct" resultMap="productMap">
+        select
+            *
+        from
+            product
+    </select>
+    <select id="getProductByCategory" resultMap="productMap" parameterType="int">
+        SELECT
+            *
+        FROM
+            product
+        JOIN
+            category
+        on
+            product.category_id = category.category_id
+        WHERE
+            product.category_id =#{id}
+    </select>
+    <select id="getProductBySearch" resultMap="productMap" parameterType="string">
+        SELECT
+            *
+        FROM
+            product
+        where
+            product_name
+            like
+            '%${search}%'
+    </select>
+    <select id="getDetails" resultMap="productMap">
+        select
+            *
+        from
+            product
+        where
+            product_id = #{id}
+    </select>
+    <select id="getDetailsPicture" resultType="vueshop.model.user.Product">
+        select
+            *
+        from
+            product_picture
+        where
+            product_id = #{id}
+    </select>
+</mapper>

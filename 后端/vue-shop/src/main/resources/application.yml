@@ -1,0 +1,25 @@
+server:
+  port: 3000
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: vueshop.model
+  mapper-locations: classpath:mapping/*.xml
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/vue_shop?useAffectedRows=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  web:
+    resources:
+      static-locations: classpath:/public
+  main:
+    allow-circular-references: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+
+

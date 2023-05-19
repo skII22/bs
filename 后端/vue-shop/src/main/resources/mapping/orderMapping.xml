@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.user.orderDao">
+    <resultMap id="orderMap" type="vueshop.model.user.Order">
+        <result property="id" column="id"/>
+        <result property="order_id" column="order_id"/>
+        <result property="order_time" column="order_time"/>
+        <result property="product_price" column="product_price"/>
+        <result property="product_name" column="product_name"/>
+        <result property="product_num" column="product_num"/>
+        <result property="user_id" column="user_id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="product_picture" column="product_picture"/>
+     </resultMap>
+    <insert id="addOrder">
+        insert into
+            orders
+        (user_id,product_id,product_price,product_num,order_time,order_id)
+        VALUES
+            (#{userId},#{productId},#{price},#{num},#{time},#{orderId})
+    </insert>
+    <select id="getOrder" resultMap="orderMap">
+        select
+                orders.id,
+                orders.order_id,
+                orders.user_id,
+                orders.product_id,
+                orders.product_num,
+                orders.order_time,
+                orders.product_price,
+                product.product_name,
+                product.product_picture
+        from
+            orders join product on orders.product_id = product.product_id
+        where
+            order_id=#{orderId}
+    </select>
+    <select id="getOrder_idList" resultType="BigInteger">
+        select
+            order_id
+        from
+            orders
+        where
+            user_id =#{userId}
+    </select>
+</mapper>

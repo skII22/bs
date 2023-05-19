@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.admin.productBackDao">
+    <resultMap id="productMap" type="vueshop.model.admin.ProductBack">
+        <id property="id" column="product_id"/>
+        <result property="name" column="product_name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="imageUrl" column="product_picture"/>
+        <result property="num" column="product_num"/>
+        <result property="price" column="product_price"/>
+        <result property="intro" column="product_intro"/>
+        <result property="sales" column="product_sales"/>
+        <result property="sellingPrice" column="product_selling_price"/>
+        <result property="title" column="product_title"/>
+    </resultMap>
+    <parameterMap id="paramMap" type="vueshop.model.admin.ProductBack">
+        <parameter property="id" resultMap="string"/>
+        <parameter property="name" resultMap="string"/>
+        <parameter property="categoryId" resultMap="vueshop.common.EnumCategory"/>
+        <parameter property="imageUrl" resultMap="string"/>
+        <parameter property="num" resultMap="string"/>
+        <parameter property="price" resultMap="string"/>
+        <parameter property="intro" resultMap="string"/>
+        <parameter property="sales" resultMap="string"/>
+        <parameter property="sellingPrice" resultMap="string"/>
+        <parameter property="title" resultMap="string"/>
+    </parameterMap>
+    <insert id="addPicture">
+        insert into
+            product
+            (product_picture,product_name,product_price,product_title,product_intro,category_id,product_selling_price,product_num)
+        values
+            (#{imageUrl},#{name},#{price},#{title},#{intro},#{categoryId},#{sellPrice},#{num})
+    </insert>
+    <update id="edit" parameterType="vueshop.model.admin.ProductBack">
+        update
+            product
+        set
+           product_name = #{name},
+           product_title=#{title},
+           product_intro = #{intro},
+           product_price = #{price},
+           product_selling_price = #{sellingPrice},
+           product_num = #{num},
+           product_sales = #{sales},
+           category_id = #{CategoryId,typeHandler=vueshop.common.EnumCategoryTypeHandler}
+        where
+           product_id = #{id}
+    </update>
+    <update id="editPicture">
+        update
+            product
+        set
+            product_picture= #{imageUrl}
+        where
+            product_name = #{name}
+    </update>
+    <update id="updatePhoto">
+        update
+            product
+        set
+            product_picture=''
+        where
+            product_picture = #{url}
+    </update>
+    <delete id="delete">
+        delete from
+            product
+        where
+            product_id=#{id}
+    </delete>
+    <delete id="deletePicture">
+        delete from
+            product_picture
+        where
+            product_id=#{id}
+    </delete>
+    <select id="selectAll" resultMap="productMap">
+        select
+            product_id,product_name,product_picture,product_num,product_price,product_intro,product_sales,product_selling_price,product_title,
+            CASE category_id
+         WHEN 1 THEN '手机'
+         WHEN 2 THEN '电视机'
+         WHEN 3 THEN '空调'
+         WHEN 4 THEN '洗衣机'
+         WHEN 5 THEN '保护套'
+         WHEN 6 THEN '保护膜'
+         WHEN 7 THEN '充电器'
+         WHEN 8 THEN '充电宝'
+         END AS category_id
+        from
+            product
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.user.resourceDao">
+    <insert id="addPicture">
+        insert into
+            carousel
+        (imgPath)
+        values
+            (#{s})
+    </insert>
+    <delete id="deleteCarousel">
+        delete from
+            carousel
+        where
+            imgPath = #{s}
+    </delete>
+
+    <select id="getResource" resultType="vueshop.model.user.Carousel">
+        select
+            carousel_id,imgPath
+        from
+            carousel;
+    </select>
+</mapper>
