@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="vueshop.dao.user.shoppingcartDao">
+    <resultMap id="shop" type="vueshop.model.user.ShoppingCart">
+        <id property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="product_id" column="product_id"/>
+    </resultMap>
+    <insert id="addShoppingCart" useGeneratedKeys="true">
+        insert into
+            shoppingcart
+            (num,user_id,product_id)
+        values
+            (#{num},#{userId},#{productId})
+    </insert>
+    <update id="updateShoppingCartNum">
+        update
+            shoppingcart
+        set
+            num = #{num}
+        where
+            user_id = #{userId} and product_id = #{productId}
+    </update>
+    <delete id="deleteShoppingCart">
+        delete
+            from shoppingcart
+        where user_id=#{userId} and product_id=#{productId}
+    </delete>
+    <select id="getShoppingCart" resultType="Map">
+        SELECT
+            shoppingcart.id AS id,
+            product.product_id AS productID,
+            product.product_name AS productName,
+            product.product_picture AS productImg,
+            product.product_selling_price AS price,
+            shoppingcart.num AS num,
+            '5' AS maxNum,
+            false AS checked
+        FROM
+            `shoppingcart`
+                JOIN product ON shoppingcart.product_id = product.product_id
+        WHERE
+            shoppingcart.user_id =#{userId}
+    </select>
+    <select id="findShoppingCartNum" resultType="Integer">
+        select
+            num
+        from
+            shoppingcart
+        where
+            user_id = #{userId} and product_id = #{productId}
+
+
+    </select>
+    <select id="getShoppingCartByProductId" resultType="Map">
+        select
+            shoppingcart.id AS id,
+            product.product_id AS productID,
+            product.product_name AS productName,
+            product.product_picture AS productImg,
+            product.product_selling_price AS price,
+            shoppingcart.num AS num,
+            '5' AS maxNum,
+            false AS checked
+        FROM
+            `shoppingcart`
+                JOIN product ON shoppingcart.product_id = product.product_id
+        WHERE
+            shoppingcart.user_id =#{userId} and shoppingcart.product_id=#{productId}
+    </select>
+</mapper>
