@@ -84,7 +84,10 @@ export default {
           page:this.pagination.currentPage,
           pageSize:this.pagination.pageSize },
       }).then(response=>{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         this.pagination.total=response.data.data.total
         this.products = response.data.data.list
         this.products.forEach(item=>{
@@ -141,7 +144,11 @@ export default {
         this.resetForm()
     }
 
+<<<<<<< HEAD
       window.location.reload();
+=======
+      // window.location.reload();
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     },
     // 表单数据清零
     resetForm() {
@@ -231,6 +238,7 @@ export default {
     },
     // 弹出编辑表单页面
     handleEdit(row) {
+<<<<<<< HEAD
       this.fileList=[]
       this.currentItem = Object.assign({}, row)
 
@@ -254,6 +262,19 @@ export default {
           }
         ];
       }
+=======
+      this.currentItem = Object.assign({}, row)
+      if (row.imageUrl != ''){
+      let val =[]
+      val.push(row.imageUrl)
+      this.fileList = val.map((url, index) => {
+        return {
+          name: `file${index+1}`,
+          url: url,
+          status: 'success'
+        };
+      });}
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     },
     // 编辑后数据进行保存
     handleSave() {

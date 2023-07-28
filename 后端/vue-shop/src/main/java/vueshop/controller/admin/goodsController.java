@@ -1,6 +1,9 @@
 package vueshop.controller.admin;
 
+<<<<<<< HEAD
 import com.github.pagehelper.PageInfo;
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 import lombok.extern.java.Log;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import vueshop.common.Result;
 import vueshop.model.admin.Product_Detail;
 import vueshop.service.admin.goodsService;
+<<<<<<< HEAD
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -19,6 +23,10 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+=======
+import java.io.File;
+import java.util.List;
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 import java.util.UUID;
 
 @Log
@@ -29,12 +37,18 @@ public class goodsController {
     @Autowired
     goodsService service;
     @RequestMapping("/getDetail")
+<<<<<<< HEAD
     public Result getProduct(@RequestParam("page")int page,@RequestParam("pageSize")int pageSize){
         PageInfo detail = service.getDetail(page,pageSize);
+=======
+    public Result getProduct(){
+        List detail = service.getDetail();
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         return new Result("200",detail);
     }
     @RequestMapping("/upload")
     public Result upload(@RequestParam("file") MultipartFile f,String name) throws Exception {
+<<<<<<< HEAD
         List<String> list  = new ArrayList<>();
         String path="src/main/resources/public/imgs/product_picture/";
         String Path="/public/imgs/product_picture/";
@@ -91,6 +105,31 @@ public class goodsController {
 //        service.addPicture("public/imgs/product_picture/"+UID+".jpg",productId);
 //        String url = "http://localhost:81/public/imgs/product_picture/"+UID+".jpg";
 //        return new Result<>("200",url,"success");
+=======
+        String UID = String.valueOf(UUID.randomUUID());
+        String newFilename = UID+".jpg"; // 新文件名
+        String storageDirectoryPath = "src/main/resources/public/imgs/product_picture/";
+        // 创建一个临时文件并将 multipartFile 中的数据复制到该文件中
+        File tempFile = File.createTempFile("temp", null);
+        f.transferTo(tempFile);
+        // 对临时文件进行重命名
+        File renamedFile = new File(tempFile.getParentFile(), newFilename);
+        tempFile.renameTo(renamedFile);
+        // 创建目标存储位置（如果不存在）
+        File storageDirectory = new File(storageDirectoryPath);
+        if (!storageDirectory.exists()) {
+            storageDirectory.mkdirs();
+        }
+        // 将重命名后的文件移动到目标存储位置
+        FileUtils.moveFileToDirectory(renamedFile, storageDirectory, true);
+        // 删除临时文件
+        tempFile.delete();
+
+        int productId= service.findId(name);
+        service.addPicture("public/imgs/product_picture/"+UID+".jpg",productId);
+        String url = "http://localhost:3000/public/imgs/product_picture/"+UID+".jpg";
+        return new Result<>("200",url,"success");
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     }
     @RequestMapping("/editForm")
     public Result<String> edit(@RequestBody Product_Detail detail){
@@ -98,8 +137,12 @@ public class goodsController {
         String name = detail.getName();
         List image = detail.getImageUrl();
         for (int i = 0; i < image.size(); i++) {
+<<<<<<< HEAD
             String pre = "http://localhost:81/";
             image.set(i, image.get(i).toString().substring(pre.length()));
+=======
+            image.set(i, image.get(i).toString().substring(22));
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         }
         log.info(String.valueOf(detail));
         service.editName(id, name);
@@ -121,6 +164,7 @@ public class goodsController {
         return new Result<>("200","删除成功");
     }
     @RequestMapping("/deletePhoto")
+<<<<<<< HEAD
     public Result<String> deletePhoto(@RequestBody Map map){
         String  url = (String) map.get("url");
         String pre = "http://localhost:81/";
@@ -131,6 +175,10 @@ public class goodsController {
             System.out.println(url);
         }
         log.warning(url);
+=======
+    public Result<String> deletePhoto(@RequestBody String url){
+        url = url.substring(30,url.length()-2);
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         service.deletePhoto(url);
         return new Result<>("200","success");
     }

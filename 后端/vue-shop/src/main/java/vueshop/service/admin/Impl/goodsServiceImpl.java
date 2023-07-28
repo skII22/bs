@@ -1,7 +1,10 @@
 package vueshop.service.admin.Impl;
 
+<<<<<<< HEAD
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +23,12 @@ public class goodsServiceImpl implements goodsService {
     goodsDao dao;
 
     @Override
+<<<<<<< HEAD
     public PageInfo getDetail(int page,int pageSize) {
         PageHelper.startPage(page,pageSize);
+=======
+    public List getDetail() {
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         List list = dao.selectId();
         List ob = new ArrayList();
         for (int i =0;i<list.size(); i++) {
@@ -30,13 +37,21 @@ public class goodsServiceImpl implements goodsService {
             detail.setId(Integer.parseInt(id));
             detail.setName(dao.selectName(Integer.parseInt(id)));
             List l = dao.selectPicture(Integer.parseInt(id));
+<<<<<<< HEAD
             l.replaceAll(item -> "http://localhost:81/" + item);
+=======
+            l.replaceAll(item -> "http://localhost:3000/" + item);
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
             log.info(String.valueOf(l));
             detail.setImageUrl(l);
             ob.add(detail);
         }
+<<<<<<< HEAD
         PageInfo info = new PageInfo<>(ob);
         return info;
+=======
+        return ob;
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 
     }
 

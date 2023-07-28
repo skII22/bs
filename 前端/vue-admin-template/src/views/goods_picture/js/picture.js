@@ -89,7 +89,11 @@ export default {
         this.$message.success('添加商品成功')
         this.resetForm()
       }
+<<<<<<< HEAD
       window.location.reload();
+=======
+      // window.location.reload();
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     },
     // 表单数据清零
     resetForm() {
@@ -182,6 +186,7 @@ export default {
     handleSave() {
       this.showEditModal = false
       const index = this.products.findIndex(item => item.id === this.currentItem.id)
+<<<<<<< HEAD
       // this.$refs.editUpload.submit()
       if (index !== -1) {
         /////  保存修改过的img路径
@@ -192,6 +197,23 @@ export default {
         //   this.currentItem.imageUrl.splice(this.currentItem.imageUrl.length,1,file.url)}
         // })
         this.products.splice(index, 1, this.currentItem)
+=======
+      this.$refs.editUpload.submit()
+      if (index !== -1) {
+        /////  保存修改过的img路径
+        this.currentItem.imageUrl=[]
+        this.fileList.forEach(file =>{
+          if (file.url != undefined){
+          this.currentItem.imageUrl.splice(this.currentItem.imageUrl.length,1,file.url)}
+        })
+        this.products.splice(index, 1, this.currentItem)
+        // let id = 0;
+        //   this.products.forEach((item,index) =>{
+        //   if(item.name=== this.ProductName){
+        //     id = index
+        //   }
+        // })
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 
         const data={
           name : this.currentItem.name,
@@ -199,7 +221,10 @@ export default {
           id: this.currentItem.id
         }
         axios.post("/api/goods/editForm", data).then(response=>{
+<<<<<<< HEAD
           this.fileList=[]
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
           this.$message.success('商品信息已保存')
           setTimeout(location.reload(),80)
         }).catch(error=>{
@@ -222,9 +247,14 @@ export default {
       },
     handleUploadSubmit(response) {
           // 将新上传的文件信息添加到fileList数组中
+<<<<<<< HEAD
       // this.currentItem.imageUrl.push(response.data.data[0])
       this.fileList.push(response.data[0])
       console.log(response.data[0])
+=======
+      this.currentItem.imageUrl.push(response.data.url)
+      console.log(response)
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     },
     // 处理上传成功后的响应数据
     handleSuccess(response,file,fileList) {

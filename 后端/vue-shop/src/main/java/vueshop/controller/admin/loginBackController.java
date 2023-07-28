@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import vueshop.common.Result;
 import vueshop.service.admin.loginBackService;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 import java.util.*;
 
 @RestController
@@ -14,14 +17,21 @@ public class loginBackController {
     @Autowired
     loginBackService service;
     @RequestMapping("/login")
+<<<<<<< HEAD
     public Result login(@RequestBody Map<String,String> request, HttpSession session) {
+=======
+    public Result login(@RequestBody Map<String,String> request) {
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         String username = request.get("username");
         String password = request.get("password");
         Map<String, String> res = new HashMap<>();
         res.put("token","admin-token");
         String pw = service.selectPw();
         if (pw.equals(password)){
+<<<<<<< HEAD
         session.setAttribute("user",true);
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         return new Result("200",res);
         }else{
         return new Result("400","密码错误");

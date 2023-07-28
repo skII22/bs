@@ -1,8 +1,11 @@
 package vueshop.service.admin.Impl;
 
+<<<<<<< HEAD
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vueshop.common.EnumCategory;
@@ -18,6 +21,7 @@ public class productBackServiceImpl implements productBackService {
     productBackDao dao;
 
     @Override
+<<<<<<< HEAD
     public PageInfo getAll(int page, int pageSize) {
         PageHelper.startPage(page, pageSize);
         List list = dao.selectAll();
@@ -27,6 +31,16 @@ public class productBackServiceImpl implements productBackService {
         }
         PageInfo info = new PageInfo<>(list);
         return info;
+=======
+    public List getAll() {
+        List list = dao.selectAll();
+        for (int i = 0; i < list.size(); i++) {
+            ProductBack item = (ProductBack) list.get(i);
+            item.setImageUrl("http://localhost:3000/"+item.getImageUrl());
+        }
+
+        return list;
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     }
 
     @Override

@@ -150,7 +150,11 @@
               ref="editUpload"
               action="/api/goods/upload"
               list-type="picture-card"
+<<<<<<< HEAD
               :auto-upload="true"
+=======
+              :auto-upload="false"
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
               :data="currentItem"
               :on-success= handleUploadSubmit
               :on-exceed="handleBeforeUpload(7)"

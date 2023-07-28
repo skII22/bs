@@ -199,6 +199,7 @@ export default {
       localStorage.setItem("user", "");
       // 清空vuex登录信息
       this.setUser("");
+<<<<<<< HEAD
       this.$axios.post("/api/users/logout").then(res=>{
         switch (res.data.code) {
             case "001":
@@ -215,6 +216,9 @@ export default {
         });
       // this.notifySucceed("成功退出登录");
       
+=======
+      this.notifySucceed("成功退出登录");
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     },
     // 接收注册子组件传过来的数据
     isRegister(val) {

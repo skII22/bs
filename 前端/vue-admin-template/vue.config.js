@@ -31,6 +31,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
+<<<<<<< HEAD
     open: false,
     proxy: {
       '/api': {
@@ -40,6 +41,17 @@ module.exports = {
           '^/api': ''
             },
         logLevel: 'debug' // 输出更多日志
+=======
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000/', // 本地后端地址
+        // target: 'http://101.132.181.9:3000/', // 线上后端地址
+        changeOrigin: true, //允许跨域
+        pathRewrite: {
+          '^/api': ''
+            }
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         }
       },
     overlay: {

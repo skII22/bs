@@ -2,6 +2,7 @@
   <div class="main">
     <el-form ref="form" label-width="80px">
       <el-form-item class="form">
+<<<<<<< HEAD
         <el-form-item>
           <i STYLE="padding-right:100px">原密码：</i>
           <el-input v-model="oldPw" type="password" class="input" style="width: 200px"></el-input>
@@ -14,6 +15,17 @@
         <el-form-item  >
           <i STYLE="padding-right:85px">确认密码：</i>
           <el-input v-model="confirmPw" type="password" style="width: 200px"></el-input>
+=======
+        <el-form-item label="原密码">
+          <el-input v-model="oldPw" class="input" style="width: 200px"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码" >
+          <el-input v-model="newPw" style="width: 200px"></el-input>
+        </el-form-item>
+        <div class="message" v-if="passwordMatch === false" style="color: red">两次密码不一致,请重新查看后输入</div>
+        <el-form-item label="确认密码" >
+          <el-input v-model="confirmPw" style="width: 200px"></el-input>
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         </el-form-item>
       </el-form-item>
     </el-form>
@@ -28,7 +40,10 @@ export default {
 </script>
 <style scoped="scoped">
 .main{
+<<<<<<< HEAD
   padding-right: 200px;
+=======
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
 text-align: center;
   margin-top: 300px;
 }

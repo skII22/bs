@@ -105,7 +105,11 @@ export default {
         user_id: this.$store.getters.getUser.user_id
       })
       .then(res => {
+<<<<<<< HEAD
         console.log(this.$store.getters.getUser)
+=======
+
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
         if (res.data.code === "001") {
           this.orders = res.data.data;
         } else {

@@ -7,7 +7,11 @@
  */
 exports.install = function (Vue) {
   // Vue.prototype.$target = "http://101.132.181.9:3000/"; // 线上后端地址
+<<<<<<< HEAD
   Vue.prototype.$target = "http://127.0.0.1:3000/"; // 本地后端地址
+=======
+  Vue.prototype.$target = "http://172.31.2.138:3000/"; // 本地后端地址
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
   // 封装提示成功的弹出框
   Vue.prototype.notifySucceed = function (msg) {
     this.$notify({

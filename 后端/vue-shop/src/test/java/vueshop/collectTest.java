@@ -26,6 +26,7 @@ public class collectTest {
 
     }
     @Test
+<<<<<<< HEAD
     public void ttt(){
         String url ="http://localhost:81/public/imgs/goods/36ae6c45-2e82-4589-95e4-9ff311856696.jpg";
         String pre = "http://localhost:81/";
@@ -34,6 +35,10 @@ public class collectTest {
             url=url.substring(pre.length());
             System.out.println(url);
         }
+=======
+    public void ad() {
+        System.out.println(EnumCategory.fromJson(1).name());
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     }
 
 }

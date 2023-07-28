@@ -251,7 +251,11 @@
               ref="uploadEdit"
               action="/api/product/upload-edit"
               list-type="picture-card"
+<<<<<<< HEAD
               :auto-upload="false"
+=======
+              :auto-upload="true"
+>>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
               :limit= "1"
               :data="currentItem"
               :on-success= handleUploadSubmit
