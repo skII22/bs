@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import vueshop.common.Result;
 import vueshop.model.user.User;
 import vueshop.service.user.userService;
-
 import javax.servlet.http.HttpSession;
 
 @Log
@@ -31,14 +30,11 @@ public class userController {
         session.setAttribute("user",user);
         return new Result<>("001",user,"登录成功");
     }
-<<<<<<< HEAD
     @RequestMapping("/users/logout")
     public Result<User> logout(HttpSession session){
         session.removeAttribute("user");
         return new Result<>("001",null,"登录已退出");
     }
-=======
->>>>>>> 32478a31c06519498ac512df3778dd391cd6f415
     @RequestMapping("/users/findUserName")
     public Result<User> findUserName(@RequestBody JSONObject object){
         String userName = object.getString("userName");

@@ -1,7 +1,6 @@
 package vueshop.dao.user;
 
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.Date;
 import java.util.List;
 

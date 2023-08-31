@@ -2,7 +2,6 @@ package vueshop.dao.user;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
